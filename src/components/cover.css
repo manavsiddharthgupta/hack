@@ -1,0 +1,41 @@
+.cover_date {
+  display: inline;
+}
+
+.cover_date h3 {
+  display: inline;
+  font-size: 0.8em;
+  font-weight: 600;
+  margin-right: 2px;
+}
+
+.lbl {
+  font-size: 0.835em;
+  font-weight: 700;
+  margin-top: 1em;
+}
+.crncy_lable {
+  /* width: 100%; */
+  text-align: center;
+  padding: 0.75em 0em;
+  outline: none;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+  border: none;
+  border-radius: 5px;
+  margin-bottom: 1em;
+  margin-top: 0.5em;
+  margin-left: 0.5rem;
+  cursor: pointer;
+  background-color: white;
+  transition: all 300ms ease-in-out;
+}
+.crncy_lable:hover {
+  background-color: rgb(247, 247, 247);
+}
+.cover_verNum {
+  width: 4rem;
+}
+.cover_lbl {
+  width: 100%;
+  display: block;
+}
