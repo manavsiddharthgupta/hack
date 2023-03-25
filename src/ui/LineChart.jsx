@@ -2,16 +2,13 @@ import Chart from "react-apexcharts";
 
 const LineChart = (props) => {
   console.log(props.srdata);
-  const yData = [5, 8, 24, 16, 32, 42, 30, 17, 11];
+  const yData = props.srdata;
   const series = [
     {
       name: "data",
       data: Array.from({ length: yData.length }, (_, i) => ({
         x: 0.5 + i,
         y: yData[i],
-        ...(i === 4
-          ? { fillColor: "rgba(32, 120, 255, 0.4)", strokeColor: "#80afff" }
-          : {}),
       })),
     },
   ];
