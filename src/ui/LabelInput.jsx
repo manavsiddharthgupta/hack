@@ -1,7 +1,7 @@
 import React from "react";
 import "./label_input.css";
 
-const Label_Input = (props) => {
+const LabelInput = (props) => {
   return (
     <label className="label">
       {props.labelName}
@@ -20,4 +20,4 @@ const Label_Input = (props) => {
     </label>
   );
 };
-export default Label_Input;
+export default LabelInput;

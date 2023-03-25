@@ -12,7 +12,6 @@
 .lbl {
   font-size: 0.835em;
   font-weight: 700;
-  margin-top: 1em;
 }
 .crncy_lable {
   /* width: 100%; */
@@ -22,8 +21,8 @@
   box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
   border: none;
   border-radius: 5px;
-  margin-bottom: 1em;
-  margin-top: 0.5em;
+  /* margin-bottom: 1em;
+  margin-top: 0.5em; */
   margin-left: 0.5rem;
   cursor: pointer;
   background-color: white;
@@ -38,4 +37,7 @@
 .cover_lbl {
   width: 100%;
   display: block;
+}
+.inner_label {
+  margin-right: 1rem;
 }

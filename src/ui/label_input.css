@@ -15,7 +15,8 @@
   font-weight: 100;
 }
 .label {
+  display: inline-block;
   font-size: 0.8em;
   font-weight: 600;
-  margin-right: 2px;
+  margin: 0.5rem 4rem 0.5rem 0rem;
 }
