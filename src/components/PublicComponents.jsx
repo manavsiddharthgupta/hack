@@ -1,4 +1,3 @@
-import React, { useState } from "react";
 import styled from "styled-components";
 import InputContainer from "./InputContainer";
 
@@ -29,43 +28,35 @@ const Container = styled.div`
   margin: 10px 50px;
 `;
 
-const PublicComponents = () => {
-  const [data, setData] = useState([
-    {
-      title: "",
-      desc: "",
-      id: "1",
-    },
-  ]);
-
-  console.log(data);
+const PublicComponents = (props) => {
+  console.log(props.data);
   const onChangeTitleData = (e, index) => {
-    const newData = [...data];
+    const newData = [...props.data];
     const containerData = {
-      ...data[index],
+      ...props.data[index],
       title: e.target.value,
     };
     newData[index] = containerData;
-    setData(() => {
+    props.onsetData(() => {
       return newData;
     });
   };
 
   const onChangeDescData = (e, index) => {
-    const newData = [...data];
+    const newData = [...props.data];
     const containerData = {
-      ...data[index],
+      ...props.data[index],
       desc: e.target.value,
     };
     newData[index] = containerData;
-    setData(() => {
+    props.onsetData(() => {
       return newData;
     });
   };
 
   return (
     <Container>
-      {data.map((each, ind) => {
+      {props.data.map((each, ind) => {
         return (
           <InputContainer
             key={each.id}
@@ -77,8 +68,9 @@ const PublicComponents = () => {
         );
       })}
       <Button
+        type="button"
         onClick={() => {
-          setData((state) => {
+          props.onsetData((state) => {
             const newData = [...state];
             let randomNum = Math.random();
 

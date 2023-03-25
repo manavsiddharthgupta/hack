@@ -2,50 +2,51 @@ import React, { useState, useEffect } from "react";
 import "./cover.css";
 // import Input from "../ui/Input";
 import LabelInput from "../ui/LabelInput";
-const CoverComponent = () => {
-  const [creditLineMode, setCreditMode] = useState({
-    mode: "increase",
-    version: 1,
-  });
-  const [selected, setSelected] = useState("yes");
-  const [modelGroup, setModalGroup] = useState("");
-  const [developerName, setDeveloperName] = useState("");
-  const [reviewData, setReviewData] = useState({
-    date: "",
-    name: "",
-  });
-  const [createdDate, setCreatedDate] = useState("");
+const CoverComponent = (props) => {
+  // const [creditLineMode, setCreditMode] = useState({
+  //   mode: "increase",
+  //   version: 1,
+  // });
+  // const [selected, setSelected] = useState("yes");
+  // const [modelGroup, setModalGroup] = useState("");
+  // const [developerName, setDeveloperName] = useState("");
+  // const [reviewData, setReviewData] = useState({
+  //   date: "",
+  //   name: "",
+  // });
+  // const [createdDate, setCreatedDate] = useState("");
 
   console.log(
-    creditLineMode,
-    modelGroup,
-    developerName,
-    reviewData,
-    createdDate
+    props.creditLineMode,
+    props.modelGroup,
+    props.developerName,
+    props.reviewData,
+    props.createdDate
   );
+
   const handleChange = (event) => {
     console.log(event.target.value);
-    setSelected(event.target.value);
+    props.setSelected(event.target.value);
   };
 
   useEffect(() => {
-    if (selected === "no") {
-      setReviewData((state) => {
+    if (props.selected === "no") {
+      props.setReviewData((state) => {
         return {
           date: "",
           name: "",
         };
       });
     }
-  }, [selected]);
+  }, [props.selected]);
   return (
     <div>
       <LabelInput
         labelName="Date Created :"
         type="date"
-        value={createdDate}
+        value={props.createdDate}
         onChange={(e) => {
-          setCreatedDate(e.target.value);
+          props.setCreatedDate(e.target.value);
         }}
       />
       <div>
@@ -54,7 +55,7 @@ const CoverComponent = () => {
         </label>
         <select
           onChange={(e) => {
-            setCreditMode((state) => {
+            props.setCreditMode((state) => {
               return {
                 mode: e.target.value,
                 version: state.version,
@@ -76,9 +77,9 @@ const CoverComponent = () => {
         className="cover_verNum"
         // defaultValue="1"
         min="0"
-        value={creditLineMode.version}
+        value={props.creditLineMode.version}
         onChange={(e) => {
-          setCreditMode((state) => {
+          props.setCreditMode((state) => {
             return {
               mode: state.mode,
               version: e.target.value,
@@ -90,9 +91,9 @@ const CoverComponent = () => {
         labelName="Model Group :"
         type="text"
         onChange={(e) => {
-          setModalGroup(e.target.value);
+          props.setModalGroup(e.target.value);
         }}
-        value={modelGroup}
+        value={props.modelGroup}
       />
       <label className="lbl cover_lbl">
         Is Document Reviewed :
@@ -101,7 +102,7 @@ const CoverComponent = () => {
           id="yes"
           name="choose"
           value="yes"
-          checked={selected === "yes"}
+          checked={props.selected === "yes"}
           onChange={handleChange}
         />
         <label className="inner_label" htmlFor="yes">
@@ -113,14 +114,14 @@ const CoverComponent = () => {
           name="choose"
           value="no"
           onChange={handleChange}
-          checked={selected === "no"}
+          checked={props.selected === "no"}
         />
         <label htmlFor="no">No</label>
       </label>
-      {selected === "yes" && (
+      {props.selected === "yes" && (
         <LabelInput
           onChange={(e) => {
-            setReviewData((state) => {
+            props.setReviewData((state) => {
               return {
                 ...state,
                 date: e.target.value,
@@ -131,11 +132,11 @@ const CoverComponent = () => {
           type="date"
         />
       )}
-      {selected === "yes" && (
+      {props.selected === "yes" && (
         <LabelInput
-          value={reviewData.name}
+          value={props.reviewData.name}
           onChange={(e) => {
-            setReviewData((state) => {
+            props.setReviewData((state) => {
               return {
                 ...state,
                 name: e.target.value,
@@ -149,9 +150,9 @@ const CoverComponent = () => {
       <LabelInput
         labelName="Model Developer Name :"
         type="text"
-        value={developerName}
+        value={props.developerName}
         onChange={(e) => {
-          setDeveloperName(e.target.value);
+          props.setDeveloperName(e.target.value);
         }}
       />
     </div>
