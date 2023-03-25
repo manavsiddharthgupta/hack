@@ -20,7 +20,11 @@ const ReviewModal = (props) => {
     <React.Fragment>
       <Modal onClick={props.onSubmit}></Modal>
       <div className="ReviewModal_outer">
-        <ReviewModalInner mainData={props.mainData} id="content" />
+        <ReviewModalInner
+          exceldata={props.exceldata}
+          mainData={props.mainData}
+          id="content"
+        />
         <div className="generate_btn">
           <Button className="download_invoice" onClick={generate}>
             Download Document

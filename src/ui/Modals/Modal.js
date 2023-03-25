@@ -5,7 +5,11 @@ const Modal = (props) => {
   return (
     <React.Fragment>
       {ReactDOM.createPortal(
-        <ReviewModal mainData={props.mainData} onSubmit={props.onSubmit} />,
+        <ReviewModal
+          exceldata={props.exceldata}
+          mainData={props.mainData}
+          onSubmit={props.onSubmit}
+        />,
         document.getElementById("modal")
       )}
     </React.Fragment>

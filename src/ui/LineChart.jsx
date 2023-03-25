@@ -1,76 +1,85 @@
 import Chart from "react-apexcharts";
-import data from "../stores/example.json";
-
-data.Data.forEach(() => {});
 
 const LineChart = (props) => {
-  return (
-    <Chart
-      type="line"
-      width="100%"
-      height="220"
-      series={[
-        {
-          name: "Total Submission",
-          data: [],
+  console.log(props.srdata);
+  const yData = [5, 8, 24, 16, 32, 42, 30, 17, 11];
+  const series = [
+    {
+      name: "data",
+      data: Array.from({ length: yData.length }, (_, i) => ({
+        x: 0.5 + i,
+        y: yData[i],
+        ...(i === 4
+          ? { fillColor: "rgba(32, 120, 255, 0.4)", strokeColor: "#80afff" }
+          : {}),
+      })),
+    },
+  ];
+  const options = {
+    chart: {
+      type: "bar",
+    },
+    plotOptions: {
+      bar: {
+        columnWidth: "95%",
+        strokeWidth: 2,
+        borderRadius: 5,
+        borderRadiusApplication: "end",
+      },
+    },
+    fill: {
+      colors: "#ff4040",
+      opacity: 0.3,
+    },
+    stroke: {
+      width: 2,
+      colors: ["#ee8080"],
+    },
+    dataLabels: { enabled: false },
+    grid: {
+      xaxis: {
+        lines: {
+          show: true,
         },
-      ]}
-      options={{
-        stroke: {
-          curve: "smooth",
+      },
+      yaxis: {
+        lines: {
+          show: true,
         },
-        grid: {
-          show: false,
+      },
+    },
+    xaxis: {
+      type: "numeric",
+      min: 0,
+      max: yData.length,
+      tickAmount: yData.length,
+      labels: { formatter: (x) => x /*Math.round(x)*/ },
+      title: { text: "Hours", offsetY: 70 },
+      axisBorder: {
+        color: "#000000",
+      },
+    },
+    yaxis: {
+      title: { text: "Visitors" },
+      min: 0,
+      max: Math.max(...yData),
+      axisBorder: {
+        show: true,
+        color: "#000000",
+      },
+    },
+    tooltip: {
+      onDatasetHover: {
+        highlightDataSeries: true,
+      },
+      x: {
+        formatter: (x) => {
+          return "Hours " + (x - 0.5) + "-" + (x + 0.5);
         },
-        labels: [],
-        markers: {
-          size: 5,
-          colors: "#4e79ff",
-          strokeColors: "#fff",
-          strokeWidth: 2,
-          strokeOpacity: 0.9,
-          strokeDashArray: 0,
-          fillOpacity: 1,
-          discrete: [],
-          shape: "circle",
-          radius: 2,
-          offsetX: 0,
-          offsetY: 0,
-          onClick: undefined,
-          onDblClick: undefined,
-          showNullDataPoints: true,
-          hover: {
-            size: undefined,
-            sizeOffset: 3,
-          },
-        },
-        tooltip: {
-          theme: "dark",
-        },
-        chart: {
-          toolbar: {
-            show: false,
-          },
-        },
-        xaxis: {
-          labels: {
-            style: {
-              colors: "#68696a",
-            },
-            offsetY: 0,
-          },
-        },
-        yaxis: {
-          labels: {
-            style: {
-              colors: "#68696a",
-            },
-            offsetX: -10,
-          },
-        },
-      }}
-    />
-  );
+      },
+    },
+  };
+  return <Chart options={options} series={series} type="bar" height={260} />;
 };
 
 export default LineChart;

@@ -2,12 +2,10 @@ import CoverComponent from "./CoverComponent";
 import PublicComponents from "./PublicComponents";
 import React, { useState } from "react";
 import Modal from "../ui/Modals/Modal";
+import ExcelToJsonConverter from "./ExcelToJsonConverter";
 
 const Document = () => {
-  // const [mainData, setMainData] = useState({
-  //   coverData: "",
-  //   modelSpecificationData: ""
-  // });
+  const [allExcelData, setExcelData] = useState({});
   const [data, setData] = useState([
     {
       title: "",
@@ -41,7 +39,9 @@ const Document = () => {
     developerName: developerName,
     reviewStatus: reviewData,
     createDate: createdDate,
+    modalgroupData: modelGroup,
   };
+  console.log(allExcelData);
   return (
     <form onSubmit={onSubmitHandler}>
       <CoverComponent
@@ -59,7 +59,14 @@ const Document = () => {
         setCreatedDate={setCreatedDate}
       />
       <PublicComponents data={data} onsetData={setData} />
-      {modalView && <Modal mainData={mainData} onSubmit={onSubmitHandler} />}
+      <ExcelToJsonConverter onSetExcelData={setExcelData} />
+      {modalView && (
+        <Modal
+          exceldata={allExcelData}
+          mainData={mainData}
+          onSubmit={onSubmitHandler}
+        />
+      )}
       <button type="submit">Review</button>
     </form>
   );
